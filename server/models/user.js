@@ -6,6 +6,8 @@ let userSchema = new Schema({
     email: String,
     name: String,
     password: String,
+    createdAt: Date,
+    updatedAt: Date
 });
 
 userSchema.pre('save', function (next) {
@@ -24,6 +26,16 @@ userSchema.pre('save', function (next) {
             next();
         })
     });
+});
+
+//Sets the values of updatedAt and createdAt
+userSchema.pre('save', function (next) {
+    const date = Date.now();
+    this.updatedAt = date;
+    if (this.isNew) {
+        this.createdAt = date;
+    }
+    next();
 });
 
 userSchema.methods.passwordIs = function (password) {
