@@ -39,3 +39,9 @@ module.exports.signup = function (req, res) {
     });
 };
 
+module.exports.signin = function (req, res) {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    if (!email || !password) return res.statusCode(412);
+};
