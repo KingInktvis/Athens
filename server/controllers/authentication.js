@@ -17,7 +17,8 @@ module.exports.signup = function (req, res) {
 
         //check if user already exists
         if (existingUser) {
-            return res.sendStatus(409).send('Email is already in use.');
+            return res.sendStatus(409);
+
         }
 
         //create new user
