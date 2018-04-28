@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const jwt = require('jwt-simple');
+const keys = require('../config/keys');
 
 module.exports.signup = function (req, res) {
     const email = req.body.email;
@@ -51,8 +52,17 @@ module.exports.signin = function (req, res) {
         if (!existingUser) return  res.status(401).send(bad);
 
         if (existingUser.passwordIs(password)) {
-            return res.send('token');
+            const token = generateToken(existingUser);
+            return res.json({token});
         }
         return res.status(401).send(bad);
     });
 };
+
+function generateToken(user) {
+    return jwt.encode({
+        id: user._id,
+        lastUpdate: user.updatedAt,
+        date: Date.now()
+    }, keys.JWT_KEY);
+}
