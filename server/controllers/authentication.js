@@ -7,19 +7,19 @@ module.exports.signup = function (req, res) {
     const password = req.body.password;
 
     if (!email || !password) {
-        return res.sendStatus(412).send('No email and/or password provided');
+        return res.status(412).send({ error: 'No email and/or password provided' });
     }
 
     User.findOne({email: email}, (err, existingUser)=>{
 
         //error check
         if (err) {
-            return res.sendStatus(500).send(err);
+            return res.status(500).send(err);
         }
 
         //check if user already exists
         if (existingUser) {
-            return res.sendStatus(409);
+            return res.status(409).send({ error: 'Email is already used.' });
 
         }
 
@@ -33,7 +33,7 @@ module.exports.signup = function (req, res) {
         newUser.save((err) => {
             //check for persistence errors
             if (err) {
-                return res.sendStatus(500);
+                return res.status(500).send(err);
             }
         });
 
