@@ -1,5 +1,6 @@
 const auth = require('../controllers/authentication');
 const requireAuth = require('../middleware/require-auth');
+const proposal = require('../controllers/proposal');
 
 module.exports = (app) => {
 
@@ -9,5 +10,6 @@ module.exports = (app) => {
 
     app.post('/signup', auth.signup);
     app.post('/signin', auth.signin);
-
+    app.post('/proposal', requireAuth, proposal.create);
+    app.get('/proposal/:proposalId', proposal.getId);
 };
