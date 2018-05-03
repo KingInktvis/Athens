@@ -13,4 +13,5 @@ module.exports = (app) => {
     app.post('/proposal', requireAuth, proposal.create);
     app.patch('/proposal', requireAuth, proposal.updateProposal);
     app.get('/proposal/:proposalId', proposal.getId);
+    app.get('/proposal', proposal.list);
 };

@@ -20,7 +20,7 @@ module.exports.create = (req, res) => {
 
 };
 
-module.exports.getId = (req, res) => {
+module.exports.getId = (req, res) => {console.log('specific');
     Proposal.findById(req.params.proposalId, (err, proposal) => {
         if (err) return res.status(500).send(err);
         if (proposal) {
@@ -67,5 +67,24 @@ module.exports.updateProposal = (req, res) => {
         } else {
             return res.status(412).send({ error: 'No changes have been send.' });
         }
+    });
+};
+
+module.exports.list = (req, res) => {
+
+    Proposal.find({}, (err, proposals) => {
+        if (err) return res.status(500).send(err);
+
+        let collection = { list: []};
+        proposals.forEach((proposal) => {
+            const newObj = {
+                id: proposal._id,
+                title: proposal.title,
+                createdAt: proposal.createdAt
+            };
+            collection.list.push(newObj);
+        });
+
+        return res.send({ collection });
     });
 };

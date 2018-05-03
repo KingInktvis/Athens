@@ -20,4 +20,6 @@ proposalSchema.pre('save', function (next) {
     next();
 });
 
-module.exports = mongoose.model('proposal', proposalSchema);
+const proposalModel = mongoose.model('proposal', proposalSchema);
+
+module.exports = proposalModel;
