@@ -13,9 +13,12 @@ const proposalSchema = new Schema({
 
 proposalSchema.pre('save', function (next) {
     const time = Date.now();
-    this.updatedAt = time;
+
     if (this.isNew) {
         this.createdAt = time;
+        this.updatedAt = time;
+    } else if (this.isModified('title') || this.isModified('body')) {
+        this.updatedAt = time;
     }
     next();
 });

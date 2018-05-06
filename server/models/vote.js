@@ -7,9 +7,4 @@ const voteSchema = new Schema({
     votedAt: Date
 });
 
-voteSchema.pre('save', function (next) {
-    this.votedAt = Date.now();
-    next();
-});
-
 module.exports = voteSchema;

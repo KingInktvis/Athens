@@ -11,11 +11,13 @@ module.exports.place = (req, res) => {
         }
         const vote = findVote(proposal, req.user._id);
         if (vote) {
-            vote.approve = approve
+            vote.approve = approve;
+            vote.votedAt = Date.now();
         } else {
             proposal.votes.push({
                 _user: req.user._id,
-                approve: approve
+                approve: approve,
+                votedAt: Date.now()
             });
         }
         proposal.save(function (err, obj) {
