@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = 'localhost:5000/';
+const API = 'http://localhost:5000/';
 
 // export const SIGNIN = 'signIn';
 
