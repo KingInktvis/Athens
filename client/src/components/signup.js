@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import FormField from './form-field';
 import * as actions from "../actions";
 
 class SignUp extends Component {
-    constructor(props) {console.log(props);
+    constructor(props) {
         super(props);
         this.fields = [{name:'email', label:'Email', type:'text'},
             {name:'password', label:'Password', type:'password'},
             {name:'passwordConfirmation', label: 'Confirm password', type:'password'}];
     }
 
-    unSubmit(values) {console.log(this.props);
+    componentWillUnmount() {console.log('reset');
+        this.props.resetSignUp();
+    }
+
+    unSubmit(values) {
         this.props.signUpUser(values);
     }
 
@@ -24,12 +29,22 @@ class SignUp extends Component {
         return collection;
     }
 
+    onSignUpRedirect() {
+        if (this.props.signUpReducer.status === 201) {
+            return <Redirect to='/'/>
+        }
+    }
+
     render () {
         return (
-            <form onSubmit={this.props.handleSubmit(this.unSubmit.bind(this))}>
-                {this.renderFields()}
-                <button type='submit'>Submit</button>
-            </form>
+            <div>
+                {this.onSignUpRedirect()}
+                <div>{this.props.signUpReducer.error}</div>
+                <form onSubmit={this.props.handleSubmit(this.unSubmit.bind(this))}>
+                    {this.renderFields()}
+                    <button type='submit'>Submit</button>
+                </form>
+            </div>
         );
     }
 }
@@ -50,9 +65,13 @@ class SignUp extends Component {
     return errors;
 }
 
-
+function mapStateToProps(state) {
+    return {
+        signUpReducer: state.signup
+    }
+}
 
 export default reduxForm({
     validate,
     form: 'signup'
-}, null, actions)(connect(null, actions)(SignUp));
+})(connect(mapStateToProps, actions)(SignUp));
