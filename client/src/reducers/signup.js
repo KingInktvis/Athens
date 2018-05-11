@@ -14,7 +14,7 @@ export default (state = { response: null, error: '' }, action) => {
                 response: null,
                 error: action.payload.response.data.error
             };
-        case types.SIGNUP_DEFAULT:console.log('reset reducer');
+        case types.SIGNUP_DEFAULT:
             return {
                 status: null,
                 response: null,

@@ -13,7 +13,7 @@ class SignUp extends Component {
             {name:'passwordConfirmation', label: 'Confirm password', type:'password'}];
     }
 
-    componentWillUnmount() {console.log('reset');
+    componentWillUnmount() {
         this.props.resetSignUp();
     }
 
