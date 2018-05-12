@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Home from './components/home';
 import SignUp from './components/signup';
+import SignIn from './components/signin';
 
 class App extends Component {
   render() {
@@ -10,7 +11,8 @@ class App extends Component {
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={Home} />
-                <Route exact parth='/signup' component={SignUp} />
+                <Route exact path='/signup' component={SignUp} />
+                <Route exact path='/signin' component={SignIn}/>
             </Switch>
         </BrowserRouter>
     );
