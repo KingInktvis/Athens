@@ -14,6 +14,13 @@ export default (state = {error: ''}, action) => {
                 token: null,
                 error: action.payload.response.data.error
             };
+        case types.SIGNOUT:
+            localStorage.clear();
+            return {
+                status: null,
+                token: null,
+                error: null
+            };
         default:
             return state;
     }

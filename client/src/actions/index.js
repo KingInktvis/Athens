@@ -46,3 +46,9 @@ export function signInUser(formProps) {
         });
     }
 }
+
+export function signOut() {
+    return {
+        type: types.SIGNOUT
+    }
+}

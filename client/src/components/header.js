@@ -15,7 +15,7 @@ class Header extends Component {
     }
 
     signOut() {
-        return this.props.signInReducer.token ? <li><Link to='/signout'>Sign out</Link></li> : '';
+        return this.props.signInReducer.token ? <li><a onClick={this.props.signOut} href='#'>Sign out</a></li> : '';
     }
 
     render() {
