@@ -5,6 +5,7 @@ import Header from './components/header';
 import Home from './components/home';
 import SignUp from './components/signup';
 import SignIn from './components/signin';
+import CreateProposal from './components/create-proposal';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/signup' component={SignUp} />
                     <Route exact path='/signin' component={SignIn}/>
+                    <Route exact path='create-proposal' component={CreateProposal}/>
                 </Switch>
             </div>
         </BrowserRouter>

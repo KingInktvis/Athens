@@ -18,12 +18,17 @@ class Header extends Component {
         return this.props.signInReducer.token ? <li><a onClick={this.props.signOut} href='#'>Sign out</a></li> : '';
     }
 
+    createProposal() {
+        return this.props.signInReducer.token ? <li><Link to='create-proposal'>New proposal</Link></li> : '';
+    }
+
     render() {
         return(
             <nav>
                 <div className='nav-wrapper'>
                     <Link to='/' className='brand-logo'>Athens</Link>
                     <ul className='right hide-on-med-and-down'>
+                        {this.createProposal()}
                         {this.signUp()}
                         {this.signIn()}
                         {this.signOut()}
