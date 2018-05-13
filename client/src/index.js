@@ -7,8 +7,19 @@ import reduxThunk from 'redux-thunk';
 
 import App from './App';
 import reducers from './reducers';
+import { SIGNIN } from './actions/types';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+
+const token = localStorage.getItem('token');
+if (token) {
+    store.dispatch({
+        type: SIGNIN,
+        payload: {
+            token
+        }
+    });
+}
 
 ReactDOM.render(
     <Provider store={store}>
