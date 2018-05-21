@@ -26,7 +26,7 @@ export function resetSignUp() {
 }
 
 export function signInUser(formProps) {
-    return async dispatch => {
+    return dispatch => {
         axios.post(`${API}signin`, {
             email: formProps.email,
             password: formProps.password
@@ -50,5 +50,37 @@ export function signInUser(formProps) {
 export function signOut() {
     return {
         type: types.SIGNOUT
+    }
+}
+
+export function createProposal({title, body}) {
+    return dispatch => {
+        axios.post(`${API}proposal`, {
+            title,
+            body
+        }, {
+            headers: {
+                auth: localStorage.getItem('token')
+            }
+        }).then(response => {
+            dispatch({
+                type: types.CREATE_PROPOSAL,
+                payload: response.data
+            })
+        }).catch(response => {
+            dispatch({
+                types: types.CREATE_PROPOSAL_ERROR,
+                payload: {
+                    status: response.response.status,
+                    message: response.response.data.error
+                }
+            })
+        });
+    }
+}
+
+export function createProposalDefault() {
+    return {
+        type: types.CREATE_PROPOSAL_DEFAULT
     }
 }
