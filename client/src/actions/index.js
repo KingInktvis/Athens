@@ -84,3 +84,25 @@ export function createProposalDefault() {
         type: types.CREATE_PROPOSAL_DEFAULT
     }
 }
+
+export function fetchProposalId(id) {
+    return dispatch => {
+        axios.get(`${API}proposal/${id}`)
+            .then(response => {
+                dispatch({
+                    type: types.FETCH_PROPOSAL,
+                    payload: response.data
+                })
+            })
+            .catch(response => {
+                dispatch({
+                    type: types.FETCH_PROPOSAL_ERROR,
+                    payload: {
+                        id,
+                        status: response.status,
+                        message: response.data
+                    }
+                })
+            })
+    }
+}
