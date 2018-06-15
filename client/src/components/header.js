@@ -19,7 +19,7 @@ class Header extends Component {
     }
 
     createProposal() {
-        return this.props.signInReducer.token ? <li><Link to='create-proposal'>New proposal</Link></li> : '';
+        return this.props.signInReducer.token ? <li><Link to='/create-proposal'>New proposal</Link></li> : '';
     }
 
     render() {
@@ -28,6 +28,7 @@ class Header extends Component {
                 <div className='nav-wrapper'>
                     <Link to='/' className='brand-logo'>Athens</Link>
                     <ul className='right hide-on-med-and-down'>
+                        <li><Link to='/proposal-list'>List</Link></li>
                         {this.createProposal()}
                         {this.signUp()}
                         {this.signIn()}

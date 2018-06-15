@@ -13,3 +13,5 @@ export const CREATE_PROPOSAL_DEFAULT = 'Crate proposal default';
 
 export const FETCH_PROPOSAL = 'Fetch proposal';
 export const FETCH_PROPOSAL_ERROR = 'Fetch proposal error';
+
+export const PROPOSAL_LIST = 'Proposal list';

@@ -7,6 +7,7 @@ import SignUp from './components/signup';
 import SignIn from './components/signin';
 import CreateProposal from './components/create-proposal';
 import ViewProposal from './components/view-proposal';
+import ProposalList from './components/list';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
                     <Route exact path='/signin' component={SignIn}/>
                     <Route exact path='/create-proposal' component={CreateProposal}/>
                     <Route path='/proposal/:id' component={ViewProposal}/>
+                    <Route path='/proposal-list' component={ProposalList}/>
                 </Switch>
             </div>
         </BrowserRouter>
